@@ -1,0 +1,102 @@
+:root {
+    --white: #ffffff;
+    --red-50: #fef2f2;
+    --red-200: #fecaca;
+    --red-400: #f87171;
+    --red-500: #ef4444;
+    --slate-100: #f1f5f9;
+    --slate-300: #cbd5e1;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-700: #334155;
+    --slate-800: #1e293b;
+    --slate-900: #0f172a;
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+.grid-wrapper {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr 5fr max-content;
+}
+
+.top {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 'logo button user-icons';
+    padding: 10px 20px 5px 20px;
+    color: var(--white);
+    background-color: var(--slate-700);
+}
+
+.top > div:first-child {
+    grid-area: logo;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.top > div:nth-child(2) {
+    grid-area: button;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.top > div:nth-child(2) > button {
+    width: 100px;
+    height: 100px;
+    background-image: url(../library/icons/plus-circle-outline.svg);
+    background-color: var(--slate-700);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+
+.top > div:last-child {
+    grid-area: user-icons;
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-end;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.top > div:last-child > img {
+    max-width: 35px;
+    max-height: auto;
+}
+
+.top > div:last-child > img:last-child {
+    border-radius: 30px;
+}
+
+.middle {
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--slate-400);
+    font-size: 20px;
+}
+
+.middle > div:first-child > img {
+    width: 200px;
+    height: auto;
+    min-width: 100px;
+    min-height: auto;
+    cursor: pointer;
+}
