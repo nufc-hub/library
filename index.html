@@ -17,8 +17,8 @@
         <div class="top"> 
             <div>Library+</div>
             <div>
-                <div>Add book</div>
-                <button></button>
+                <div id="add-book-label">Add book</div>
+                <button class="add-book-button" aria-controls="add-book-label"></button>
             </div>
             <div>
                 <img src="../library/icons/cog-outline.svg" alt="settings icon">
@@ -26,28 +26,31 @@
                 <img src="../library/img/DALL·E 2023-07-13 20.54.10 - An arrogant monkey eating an apple while flying too close to the sun. __Style_ cartoon.png" alt="profile image">
             </div>
         </div>
-        <!-- middle -->
-        <div class="middle">
+        <!-- empty library display -->
+        <div class="library-empty">
             <div>
                 <img src="../library/icons/book-off-outline.svg" alt="library empty">
             </div>
             <div>
                 <p>Library is empty.</p>
             </div>
-            <div class="overlay-hidden">
-                <div class="form-container-hidden">
-                    <form action="">
-                        <h3>Add new book</h3>
-                        <input type="text" placeholder="Title">
-                        <input type="text" placeholder="Author">
-                        <input type="text" placeholder="Pages">
-                        <div>
-                            <label for="have-read">Have you read it?</label>
-                            <input type="checkbox" id="have-read">
-                        </div>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
+        </div>
+        <!-- diplays when 'add book' button is clicked -->
+        <div class="overlay" style="display: none;"></div>
+        <!-- diplays when 'add book' button is clicked -->
+        <div class="form-box-container" style="display: none;">
+            <div class="form-box">
+                <form action="" class="add-book-form">
+                    <h3>Add new book</h3>
+                    <input type="text" name="title" id="title" placeholder="Title" required>
+                    <input type="text" name="author" id="author" placeholder="Author" required>
+                    <input type="text" name="pages" id="pages" placeholder="Pages" required>
+                    <div>
+                        <label for="have-read">Have you read it?</label>
+                        <input type="checkbox" name="have-read" id="have-read">
+                    </div>
+                    <button type="submit" class="submit-button">Submit</button>
+                </form>
             </div>
         </div>
     </div>
