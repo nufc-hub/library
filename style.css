@@ -5,6 +5,7 @@
     --red-400: #f87171;
     --red-500: #ef4444;
     --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
     --slate-300: #cbd5e1;
     --slate-400: #94a3b8;
     --slate-500: #64748b;
@@ -12,6 +13,7 @@
     --slate-700: #334155;
     --slate-800: #1e293b;
     --slate-900: #0f172a;
+    --yellow-300: #fde047;
 }
 
 * {
@@ -99,4 +101,106 @@
     min-width: 100px;
     min-height: auto;
     cursor: pointer;
+}
+
+/* Styling for appended container  */
+.library-items-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 30px;
+}
+
+/* Styling for appended library-items */
+
+/* Styling for input form */
+
+.overlay-hidden {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* display: none; */
+}
+
+.form-container-hidden {
+    height: 420px;
+    width: 310px;
+    padding: 10px 20px 20px 20px;
+    border-radius: 10px;
+    background-color: var(--slate-100);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+form > h3 {
+    color: var(--slate-600);
+}
+
+form > input[type='text'] {
+    width: 280px;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    color: var(--slate-800);
+    background-color: var(--yellow-300);
+}
+
+
+form > input[type='text']:focus {
+    outline: none;
+}
+
+form > div {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+form > div > input[type='checkbox'] {
+    appearance: none;
+}
+
+form > div > input[type='checkbox']::before {
+    box-sizing: border-box;
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--slate-400);
+    border-radius: 3px;
+    background-color: var(--white);
+}
+
+form > div > input[type='checkbox']:checked::before {
+    content: "✓";
+    border: none;
+    background-color: var(--yellow-300);
+}
+
+form > div > label {
+    color: var(--slate-500);
+}
+
+form > button {
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    color: var(--slate-800);
+    background-color: var(--slate-300);
 }
