@@ -62,33 +62,39 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     // Variables for creating elements of library card //
     const libraryItem = document.createElement('div');
 
+    const libraryItemValues = document.createElement('div')
     const libraryItemTitle = document.createElement('p');
     const libraryItemAuthor = document.createElement('p');
     const libraryItemPages = document.createElement('p');
 
     const libraryItemButtonsContainer = document.createElement('div');
-    const libraryItemHaveRead = document.createElement('button');
-    const libraryItemRemove = document.createElement('button');
+    const libraryItemHaveRead = document.createElement('div');
+    const libraryItemRemove = document.createElement('div');
 
     libraryItem.classList.add('library-item-container');
-    // Appends the library-item-container' to the library div. Library div exists in the HTML. //
+    // Appends the libraryItem' to the library div. Library div exists in the HTML. //
     library.appendChild(libraryItem);
 
-    // These append to the 'library-items-container. //
+    // This appends the 'libraryItemValues' to the 'libraryItem'. //
+    libraryItemValues.classList.add('top');
+    libraryItem.appendChild(libraryItemValues);
+
+    // These append to the 'libraryItemValues' container. //
     libraryItemTitle.classList.add('library-item-title');
-    libraryItem.appendChild(libraryItemTitle);
+    libraryItemValues.appendChild(libraryItemTitle);
 
     libraryItemAuthor.classList.add('library-item-author');
-    libraryItem.appendChild(libraryItemAuthor);
+    libraryItemValues.appendChild(libraryItemAuthor);
 
     libraryItemPages.classList.add('library-item-pages');
-    libraryItem.appendChild(libraryItemPages);
+    libraryItemValues.appendChild(libraryItemPages);
 
-    libraryItemButtonsContainer.classList.add('library-item-buttons-container');
+    // This appends to the 'libraryItem' container. //
+    libraryItemButtonsContainer.classList.add('bottom');
     libraryItem.appendChild(libraryItemButtonsContainer);
 
     libraryItemHaveRead.classList.add('library-item-have-read');
-    // This appends to the library-item-buttons-container. //
+    // This appends to the 'libraryItemButtonsContainer' container. //
     libraryItemButtonsContainer.appendChild(libraryItemHaveRead);
     libraryItemHaveRead.addEventListener('click', () => {
         // This is to indicate if the book has been read. //
@@ -96,11 +102,11 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     })
 
     libraryItemRemove.classList.add('library-item-remove');
-    // This appends to the library-item-buttons-container. //
+// This appends to the 'libraryItemButtonsContainer' container. //
     libraryItemButtonsContainer.appendChild(libraryItemRemove);
     libraryItemRemove.addEventListener('click', () => {
         // This is to delete chosen book from the library. //
-        libraryItemContainer.remove()
+        libraryItem.remove();
     })
 }
 
