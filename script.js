@@ -1,6 +1,7 @@
 // This is where added books will be stored //
 let myLibrary = [];
 
+
 // The book object constructor //
 function Book(title, author, pages, haveRead) {
     this.title = title
@@ -9,21 +10,23 @@ function Book(title, author, pages, haveRead) {
     this.haveRead = haveRead
 }
 
-// Selects the 'library-empty' div //
-const emptyLibraryDisplay = document.querySelector('.library-empty');
 
-// removes the 'library is empty' display from the webpage //
+// Selects the 'library' div //
+const library = document.querySelector('.library');
+
+// Removes the 'library is empty' display from the webpage when initial item is added to library. //
 function removeEmptyLibraryDisplay() {
-    const emptyLibraryChildren = emptyLibraryDisplay.children;
+    const emptyLibraryChildren = library.children;
 
         if(myLibrary.length === 1) {
             for(let i = emptyLibraryChildren.length - 1; i >= 0; i--) {
-                emptyLibraryDisplay.removeChild(emptyLibraryChildren[i]);
+                library.removeChild(emptyLibraryChildren[i]);
             };
         } else {
             return;
         }
 }
+
 
 const overlay = document.querySelector('.overlay');
 const formBoxContainer = document.querySelector('.form-box-container');
@@ -37,6 +40,7 @@ function closeForm() {
 
 // This executes the 'closeForm'. //
 overlay.addEventListener('click', closeForm);
+
 
 const addBookLabel = document.getElementById('add-book-label');
 const addBookButton = document.querySelector('.add-book-button');
@@ -52,24 +56,54 @@ function displayForm() {
 addBookLabel.addEventListener('click', displayForm);
 addBookButton.addEventListener('click', displayForm);
 
-const libraryItemsContainer = document.createElement('div');
-// This function creates a new element for library items container //
-function createBookGrid() {
-    if (myLibrary.length === 0) {
 
-        libraryItemsContainer.classList.add('library-items-container');
-        libraryContent.appendChild(libraryItemsContainer);
-    }
+// This function creates an elements for a library-item. i.e a book entry. //
+function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
+    // Variables for creating elements of library card //
+    const libraryItem = document.createElement('div');
+
+    const libraryItemTitle = document.createElement('p');
+    const libraryItemAuthor = document.createElement('p');
+    const libraryItemPages = document.createElement('p');
+
+    const libraryItemButtonsContainer = document.createElement('div');
+    const libraryItemHaveRead = document.createElement('button');
+    const libraryItemRemove = document.createElement('button');
+
+    libraryItem.classList.add('library-item-container');
+    // Appends the library-item-container' to the library div. Library div exists in the HTML. //
+    library.appendChild(libraryItem);
+
+    // These append to the 'library-items-container. //
+    libraryItemTitle.classList.add('library-item-title');
+    libraryItem.appendChild(libraryItemTitle);
+
+    libraryItemAuthor.classList.add('library-item-author');
+    libraryItem.appendChild(libraryItemAuthor);
+
+    libraryItemPages.classList.add('library-item-pages');
+    libraryItem.appendChild(libraryItemPages);
+
+    libraryItemButtonsContainer.classList.add('library-item-buttons-container');
+    libraryItem.appendChild(libraryItemButtonsContainer);
+
+    libraryItemHaveRead.classList.add('library-item-have-read');
+    // This appends to the library-item-buttons-container. //
+    libraryItemButtonsContainer.appendChild(libraryItemHaveRead);
+    libraryItemHaveRead.addEventListener('click', () => {
+        // This is to indicate if the book has been read. //
+        libraryItemHaveRead.classList.toggle('library-item-have-read')
+    })
+
+    libraryItemRemove.classList.add('library-item-remove');
+    // This appends to the library-item-buttons-container. //
+    libraryItemButtonsContainer.appendChild(libraryItemRemove);
+    libraryItemRemove.addEventListener('click', () => {
+        // This is to delete chosen book from the library. //
+        libraryItemContainer.remove()
+    })
 }
 
-
-const libraryItem = document.createElement('div');
-// This function creates an element for a library-item. i.e a book entry. //
-function createLibraryItem() {
-
-    libraryItem.classList.add('library-item');
-    libraryItemsContainer.appendChild(libraryItem);
-}
 
 const form = document.querySelector('.add-book-form');
 const submitButton = document.querySelector('.submit-button');
@@ -79,15 +113,19 @@ function addBookToLibrary() {
     
     submitButton.addEventListener('click', (e) => {
         e.preventDefault();
-        const title = document.getElementById('title').value;
-        const author = document.getElementById('author').value;
-        const pages = parseInt(document.getElementById('pages').value);
-        const haveRead = document.getElementById('have-read').value;
+        const titleValue = document.getElementById('title').value;
+        const authorValue = document.getElementById('author').value;
+        const pagesValue = parseInt(document.getElementById('pages').value);
+        const haveReadValue = document.getElementById('have-read').value;
 
-        const newBook = new Book (title, author, pages, haveRead);
+        const newBook = new Book (titleValue, authorValue, pagesValue, haveReadValue);
 
         // Adds the new book to the myLibrary array //
         myLibrary.push(newBook);
+
+        //Add a loop here that will loop to the last item in the array and add it //
+        // When the loop reaches the end of the array the createLibraryItem function is executed //
+
 
         // Clears the form fields after adding the book //
         form.reset();
