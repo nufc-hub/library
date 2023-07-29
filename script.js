@@ -31,7 +31,7 @@ function removeEmptyLibraryDisplay() {
 const overlay = document.querySelector('.overlay');
 const formBoxContainer = document.querySelector('.form-box-container');
 
-// When the 'overlay' is clicked form closes without submitting //
+// When the 'overlay' is clicked, form closes without submitting //
 function closeForm() {
     // This hides the formBoxContainer and overlay elements'. //
     formBoxContainer.style.display = 'none';
@@ -57,7 +57,7 @@ addBookLabel.addEventListener('click', displayForm);
 addBookButton.addEventListener('click', displayForm);
 
 
-// This function creates an elements for a library-item. i.e a book entry. //
+// This function creates elements for a library-item. i.e a book entry. //
 function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     // Variables for creating elements of library card //
     const libraryItem = document.createElement('div');
@@ -82,12 +82,15 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     // These append to the 'libraryItemValues' container. //
     libraryItemTitle.classList.add('library-item-title');
     libraryItemValues.appendChild(libraryItemTitle);
+    libraryItemTitle.textContent = titleValue;
 
     libraryItemAuthor.classList.add('library-item-author');
     libraryItemValues.appendChild(libraryItemAuthor);
+    libraryItemAuthor.textContent = authorValue;
 
     libraryItemPages.classList.add('library-item-pages');
     libraryItemValues.appendChild(libraryItemPages);
+    libraryItemPages.textContent = pagesValue;
 
     // This appends to the 'libraryItem' container. //
     libraryItemButtonsContainer.classList.add('bottom');
@@ -96,9 +99,19 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     libraryItemHaveRead.classList.add('library-item-have-read');
     // This appends to the 'libraryItemButtonsContainer' container. //
     libraryItemButtonsContainer.appendChild(libraryItemHaveRead);
+    // Sets the text content of library. //
+    libraryItemHaveRead.textContent = haveReadValue;
     libraryItemHaveRead.addEventListener('click', () => {
         // This is to indicate if the book has been read. //
-        libraryItemHaveRead.classList.toggle('library-item-have-read')
+        //****Not sure if i need this line  libraryItemHaveRead.classList.toggle('library-item-have-read');//
+        libraryItemHaveRead.classList.toggle('library-item-have-read');
+        libraryItemHaveRead.classList.toggle('.toggle');
+        // This changes the text content when clicked. //
+        if(libraryItemHaveRead.textContent === 'Read') {
+            libraryItemHaveRead.textContent = 'Unread';
+        } else {
+            libraryItem.textContent = 'Read';
+        }
     })
 
     libraryItemRemove.classList.add('library-item-remove');
