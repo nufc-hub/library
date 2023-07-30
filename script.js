@@ -124,6 +124,9 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
         // This is to delete chosen book from the library. //
         libraryItem.remove();
     })
+
+    // This scrolls the newly created library-item in view //
+    libraryItem.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 
@@ -133,7 +136,7 @@ const submitButton = document.querySelector('.submit-button');
 // use this function to add book //
 function addBookToLibrary() {
     
-    submitButton.addEventListener('click', (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
         const titleValue = document.getElementById('title').value;
         const authorValue = document.getElementById('author').value;
@@ -163,7 +166,6 @@ function addBookToLibrary() {
         closeDisplayForm();
     });
 }
-
 
 addBookToLibrary();
 
