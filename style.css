@@ -1,6 +1,7 @@
 :root {
     --white: #ffffff;
     --red-50: #fef2f2;
+    --red-100: #fee2e2;
     --red-200: #fecaca;
     --red-400: #f87171;
     --red-500: #ef4444;
@@ -14,110 +15,81 @@
     --slate-800: #1e293b;
     --slate-900: #0f172a;
     --yellow-300: #fde047;
+    --yellow-400: #facc15;
 }
 
 * {
     font-family: 'Rubik', sans-serif;
 }
 
-.grid-wrapper {
-    display: grid;
-    height: 100vh;
-    grid-template-rows: 1fr 5fr max-content;
-}
-
-.top {
+/* Styling for nav bar. */
+.nav {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-areas: 'logo button user-icons';
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 'logo add-book-label user-icons'
+                         '. add-book-button .';
+    height: 150px;
     padding: 10px 20px 5px 20px;
     color: var(--white);
     background-color: var(--slate-700);
 }
 
-.top > div:first-child {
+.nav > div:first-child {
     grid-area: logo;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 40px;
-    font-weight: 600;
-}
-
-.top > div:nth-child(2) {
-    grid-area: button;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: 25px;
     font-weight: 600;
-    cursor: pointer;
 }
 
-.top > div:nth-child(2) > button {
-    width: 100px;
-    height: 100px;
-    background-image: url(../library/icons/plus-circle-outline.svg);
-    background-color: var(--slate-700);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: none;
-    cursor: pointer;
-}
-
-.top > div:last-child {
-    grid-area: user-icons;
+.nav > div:nth-child(2) {
+    grid-area: add-book-label;
     display: flex;
-    align-items:flex-start;
-    justify-content: flex-end;
-    gap: 20px;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
     cursor: pointer;
 }
 
-.top > div:last-child > img {
-    max-width: 35px;
-    max-height: auto;
+.nav > div:nth-child(3) {
+    grid-area: user-icons;
+    display: grid;
+    justify-self: flex-end;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
 }
 
-.top > div:last-child > img:last-child {
+.nav > div:nth-child(3) > img {
+    max-width: 25px;
+    max-height: auto;
+    cursor: pointer;
+}
+
+.nav > div:nth-child(3) > img:last-child {
     border-radius: 30px;
 }
 
-.middle {
-    background-color: var(--white);
+.nav > img {
+    grid-area: add-book-button;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: var(--slate-400);
-    font-size: 20px;
-}
-
-.middle > div:first-child > img {
-    width: 200px;
-    height: auto;
-    min-width: 100px;
-    min-height: auto;
+    justify-self: center;
+    align-self: flex-start;
+    height: 60px;
     cursor: pointer;
 }
 
-/* Styling for appended container  */
-.library-items-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 30px;
+.nav > img:hover {
+    border-radius: 50px;
+    background-color: var(--red-200);
 }
 
-/* Styling for appended library-items */
-
-/* Styling for input form */
-
-.overlay-hidden {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* styling fo z-index */
+.overlay {
+    display: none;
     height: 100%;
     width: 100%;
     position: fixed;
@@ -125,10 +97,19 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    /* display: none; */
 }
 
-.form-container-hidden {
+.form-box-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
+/* Styling for form */
+.form-box {
     height: 420px;
     width: 310px;
     padding: 10px 20px 20px 20px;
@@ -148,19 +129,33 @@ form > h3 {
     color: var(--slate-600);
 }
 
-form > input[type='text'] {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+form > input[type='text'],
+input[type='number'] {
     width: 280px;
     padding: 8px;
     border: none;
+    outline: none;
     border-radius: 10px;
     font-size: 22px;
     color: var(--slate-800);
     background-color: var(--yellow-300);
 }
 
+form > input[type='text']:focus,
+input[type='number']:focus,
+button[type='submit']:focus {
+    outline: 2px solid var(--slate-500);
+}
 
-form > input[type='text']:focus {
-    outline: none;
+form > input[type='text']:hover,
+input[type='number']:hover {
+    background-color: var(--yellow-400);
 }
 
 form > div {
@@ -185,9 +180,17 @@ form > div > input[type='checkbox']::before {
     border: 2px solid var(--slate-400);
     border-radius: 3px;
     background-color: var(--white);
+    cursor: pointer;
+}
+
+form > div > input[type='checkbox']:hover {
+    outline: 2px solid var(--slate-500);
 }
 
 form > div > input[type='checkbox']:checked::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     content: "✓";
     border: none;
     background-color: var(--yellow-300);
@@ -203,4 +206,90 @@ form > button {
     border-radius: 10px;
     color: var(--slate-800);
     background-color: var(--slate-300);
+    cursor: pointer;
+}
+
+form > button[type='submit']:hover {
+    background-color: var(--slate-400);
+}
+
+/* Styling for when library is empty */
+.empty-library {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 400px;
+    min-height: min-content;
+    font-size: 20px;
+    color: var(--slate-400);
+}
+
+.empty-library > img {
+    max-height: 200px;
+    width: auto;
+}
+
+/* Styling for when books are in library */
+.library {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 1rem;
+    color: var(--slate-400);
+    font-size: 20px;
+} 
+
+/* Styling for appended library-items */
+.library-item-container {
+    min-height: 250px;
+    width: 280px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    word-wrap: break-word;
+    background-color: var(--yellow-400);
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 80%;
+    padding: 1rem;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-style: italic;
+    color: var(--slate-700);
+}
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--slate-500);
+    color: var(--slate-100);
+    font-weight: 500;
+}
+
+.library-item-have-read,
+.library-item-remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.library-item-have-read {
+    border-right: 1px solid var(--slate-400);
+    border-bottom-left-radius: 10px;
+}
+
+.library-item-remove {
+    border-left: 1px solid var(--slate-400);
+    border-bottom-right-radius: 10px;
 }
