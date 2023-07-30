@@ -43,7 +43,7 @@ overlay.addEventListener('click', closeForm);
 
 
 const addBookLabel = document.getElementById('add-book-label');
-const addBookButton = document.querySelector('.add-book-button');
+const addBookButton = document.querySelector('.add-book-img-container');
 
 // This brings up the add book form when the add book button is clicked. //
 function displayForm() {
@@ -82,15 +82,15 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     // These append to the 'libraryItemValues' container. //
     libraryItemTitle.classList.add('library-item-title');
     libraryItemValues.appendChild(libraryItemTitle);
-    libraryItemTitle.textContent = titleValue;
+    libraryItemTitle.textContent = `Title: ${titleValue}`;
 
     libraryItemAuthor.classList.add('library-item-author');
     libraryItemValues.appendChild(libraryItemAuthor);
-    libraryItemAuthor.textContent = authorValue;
+    libraryItemAuthor.textContent = `Author: ${authorValue}`;
 
     libraryItemPages.classList.add('library-item-pages');
     libraryItemValues.appendChild(libraryItemPages);
-    libraryItemPages.textContent = pagesValue;
+    libraryItemPages.textContent = `Pages: ${pagesValue}`;
 
     // This appends to the 'libraryItem' container. //
     libraryItemButtonsContainer.classList.add('bottom');
@@ -102,19 +102,18 @@ function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
     // Sets the text content of library. //
     libraryItemHaveRead.textContent = haveReadValue;
     libraryItemHaveRead.addEventListener('click', () => {
-        // This is to indicate if the book has been read. //
-        //****Not sure if i need this line  libraryItemHaveRead.classList.toggle('library-item-have-read');//
-        libraryItemHaveRead.classList.toggle('library-item-have-read');
-        libraryItemHaveRead.classList.toggle('.toggle');
         // This changes the text content when clicked. //
         if(libraryItemHaveRead.textContent === 'Read') {
             libraryItemHaveRead.textContent = 'Unread';
+            // This is to indicate if the book has been read. //
+            libraryItemHaveRead.classList.toggle('.toggle');
         } else {
-            libraryItem.textContent = 'Read';
+            libraryItemHaveRead.textContent = 'Read';
         }
     })
 
     libraryItemRemove.classList.add('library-item-remove');
+    libraryItemRemove.textContent = 'Remove'
 // This appends to the 'libraryItemButtonsContainer' container. //
     libraryItemButtonsContainer.appendChild(libraryItemRemove);
     libraryItemRemove.addEventListener('click', () => {
@@ -144,24 +143,23 @@ function addBookToLibrary() {
         // Adds the new book to the myLibrary array //
         myLibrary.push(newBook);
 
-        //Add a loop here that will loop to the last item in the array and add it //
-        // When the loop reaches the end of the array the createLibraryItem function is executed //
-
-
         // Clears the form fields after adding the book //
         form.reset();
 
         // Removes the empty library display when the first book is added //
-        removeEmptyLibraryDisplay()
+        removeEmptyLibraryDisplay();
+
+        // Adds most recently added book in array to library. //
+        // for (let item of myLibrary)// 
+        for (let i = myLibrary.length -1; i <myLibrary.length; i++) {
+            createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue);
+          }
 
         // Add function to close form display //
     });
 }
 
+
 addBookToLibrary();
 
 
-// loops through all items in the array //
-for (item of myLibrary) {
-  console.log(item);
-}
