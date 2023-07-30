@@ -48,6 +48,13 @@ function displayForm() {
     formBoxContainer.style.display = 'block';
 }
 
+// This changes the 'overlay' and 'formBoxContainer' display from 'block' to 'none'. //
+function closeDisplayForm() {
+    // This changes the 'overlay' and 'formBoxContainer' display from 'none' to 'block'. //
+    overlay.style.display = 'none';
+    formBoxContainer.style.display = 'none';
+}
+
 // This executes the 'displayForm'. //
 addBookLabel.addEventListener('click', displayForm);
 addBookButton.addEventListener('click', displayForm);
@@ -152,7 +159,8 @@ function addBookToLibrary() {
             createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue);
           }
 
-        // Add function to close form display //
+        // This closes the add book form when the book is added to the library. //
+        closeDisplayForm();
     });
 }
 
