@@ -12,16 +12,12 @@ function Book(title, author, pages, haveRead) {
 
 
 // Selects the 'library' div //
-const library = document.querySelector('.library');
+const emptyLibrary = document.querySelector('.empty-library');
 
 // Removes the 'library is empty' display from the webpage when initial item is added to library. //
-function removeEmptyLibraryDisplay() {
-    const emptyLibraryChildren = library.children;
-
+function removeEmptyLibrary() {
         if(myLibrary.length === 1) {
-            for(let i = emptyLibraryChildren.length - 1; i >= 0; i--) {
-                library.removeChild(emptyLibraryChildren[i]);
-            };
+            emptyLibrary.remove();
         } else {
             return;
         }
@@ -43,7 +39,7 @@ overlay.addEventListener('click', closeForm);
 
 
 const addBookLabel = document.getElementById('add-book-label');
-const addBookButton = document.querySelector('.add-book-img-container');
+const addBookButton = document.querySelector('.add-book-button');
 
 // This brings up the add book form when the add book button is clicked. //
 function displayForm() {
@@ -56,6 +52,7 @@ function displayForm() {
 addBookLabel.addEventListener('click', displayForm);
 addBookButton.addEventListener('click', displayForm);
 
+const library = document.querySelector('.library')
 
 // This function creates elements for a library-item. i.e a book entry. //
 function createLibraryItem(titleValue, authorValue, pagesValue, haveReadValue) {
@@ -147,7 +144,7 @@ function addBookToLibrary() {
         form.reset();
 
         // Removes the empty library display when the first book is added //
-        removeEmptyLibraryDisplay();
+        removeEmptyLibrary();
 
         // Adds most recently added book in array to library. //
         // for (let item of myLibrary)// 
