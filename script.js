@@ -135,8 +135,10 @@ function addBookToLibrary() {
         const titleValue = document.getElementById('title').value;
         const authorValue = document.getElementById('author').value;
         const pagesValue = parseInt(document.getElementById('pages').value);
-        const haveReadValue = document.getElementById('have-read').value;
-
+        const haveReadCheckbox = document.getElementById('have-read');
+        //Changes the string value of the checkbox. //
+        const haveReadValue = haveReadCheckbox.checked ? 'Read' : 'Unread';
+        //Creates a new instance of the book object. //
         const newBook = new Book (titleValue, authorValue, pagesValue, haveReadValue);
 
         // Adds the new book to the myLibrary array //
