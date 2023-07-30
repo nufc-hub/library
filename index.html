@@ -13,38 +13,35 @@
 </head>
 <body>
     <div class="grid-wrapper">
-        <!-- top -->
-        <div class="top"> 
+        <!-- nav -->
+        <div class="nav"> 
             <div>Library+</div>
-            <div>
-                <div id="add-book-label">Add book</div>
-                <button class="add-book-button" aria-controls="add-book-label"></button>
-            </div>
+            <div id="add-book-label">Add book</div>
             <div>
                 <img src="../library/icons/cog-outline.svg" alt="settings icon">
                 <img src="../library/icons/message-outline.svg" alt="send message to support icon">
                 <img src="../library/img/DALL·E 2023-07-13 20.54.10 - An arrogant monkey eating an apple while flying too close to the sun. __Style_ cartoon.png" alt="profile image">
             </div>
+            <img src="../library/icons/plus-circle-outline.svg" alt="add book button" aria-controls="add-book-label" class="add-book-button">
         </div>
-        <!-- empty library display -->
-        <div class="library-empty">
-            <div>
-                <img src="../library/icons/book-off-outline.svg" alt="library empty">
-            </div>
-            <div>
-                <p>Library is empty.</p>
-            </div>
+        <!-- This will only appear when the library is empty
+        once there is content it will be deleted. -->
+        <div class="empty-library">
+            <img src="../library/icons/book-off-outline.svg" alt="library empty">
+            <p>Library is empty.</p>
         </div>
-        <!-- diplays when 'add book' button is clicked -->
-        <div class="overlay" style="display: none;"></div>
-        <!-- diplays when 'add book' button is clicked -->
-        <div class="form-box-container" style="display: none;">
+        <!-- Library display. Books added to the library will go in here. -->
+        <div class="library"></div>
+        <!-- displays when 'add book' button is clicked -->
+        <div class="overlay"></div>
+        <!-- displays when 'add book' button is clicked -->
+        <div class="form-box-container">
             <div class="form-box">
                 <form action="" class="add-book-form">
                     <h3>Add new book</h3>
-                    <input type="text" name="title" id="title" placeholder="Title" required>
-                    <input type="text" name="author" id="author" placeholder="Author" required>
-                    <input type="text" name="pages" id="pages" placeholder="Pages" required>
+                    <input type="text" name="title" id="title" placeholder="Title" autocomplete="off" required>
+                    <input type="text" name="author" id="author" placeholder="Author" autocomplete="off" required>
+                    <input type="number" name="pages" id="pages" placeholder="Pages" autocomplete="off" required>
                     <div>
                         <label for="have-read">Have you read it?</label>
                         <input type="checkbox" name="have-read" id="have-read">
