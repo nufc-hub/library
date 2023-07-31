@@ -63,9 +63,9 @@
     gap: 15px;
 }
 
+.nav > div:nth-child(3) > svg,
 .nav > div:nth-child(3) > img {
     max-width: 25px;
-    max-height: auto;
     cursor: pointer;
 }
 
@@ -73,7 +73,7 @@
     border-radius: 30px;
 }
 
-.nav > img {
+.nav > svg {
     grid-area: add-book-button;
     display: flex;
     justify-self: center;
@@ -225,7 +225,7 @@ form > button[type='submit']:hover {
     color: var(--slate-400);
 }
 
-.empty-library > img {
+.empty-library > svg {
     max-height: 200px;
     width: auto;
 }
